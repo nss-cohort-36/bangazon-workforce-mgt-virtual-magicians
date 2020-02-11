@@ -1,5 +1,6 @@
 import sqlite3
 from django.shortcuts import render
+from models import Computer
 
 
 def computer_list(request):
@@ -10,12 +11,12 @@ def computer_list(request):
 
             db_cursor.execute("""
             select
-                b.id,
-                b.title,
-                b.isbn,
-                b.author,
-                b.year_published,
-                b.librarian_id,
-                b.location_id
+                c.make,
+                c.purchase_date,
+                c.decomission_date
             from hrapp_computer c
             """)
+
+            all_computers = []
+            dataset = db_cursor.fetchall()
+
