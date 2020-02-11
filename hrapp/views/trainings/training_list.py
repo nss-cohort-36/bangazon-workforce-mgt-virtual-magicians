@@ -1,11 +1,12 @@
 import sqlite3
+from ..connection import Connection
 from django.shortcuts import render
 from hrapp.models import Training
 
 
 def training_list(request):
     if request.method == 'GET':
-        with sqlite3.connect("/Users/samanthapita/workspace/group-projects/bangazon-workforce-mgt-virtual-magicians/db.sqlite3") as conn:
+        with sqlite3.connect(Connection.db_path) as conn:            
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
