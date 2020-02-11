@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf.urls import include
+from django.contrib.auth.urls import *
 from hrapp import views
 from .views import *
 
@@ -9,5 +10,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_user, name='logout'),
     path('employees/', employee_list, name='employee_list'),
+<<<<<<< HEAD
     path('departments/', department_list, name='department_list'),
+=======
+    path('trainings/', training_list, name='training_list'),
+>>>>>>> master
 ]
