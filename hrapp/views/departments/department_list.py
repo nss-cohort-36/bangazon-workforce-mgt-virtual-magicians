@@ -1,6 +1,6 @@
 import sqlite3
 from django.shortcuts import render
-from hrapp.models import department
+from hrapp.models import Department
 from ..connection import Connection
 
 
