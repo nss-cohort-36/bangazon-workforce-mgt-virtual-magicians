@@ -6,8 +6,8 @@ class Department(models.Model):
     dept_budget = models.IntegerField()
 
     class Meta:
-        verbose_name = _("Department")
-        verbose_name_plural = _("Departments")
+        verbose_name = ("Department")
+        verbose_name_plural = ("Departments")
 
     def __str__(self):
         return self.name
