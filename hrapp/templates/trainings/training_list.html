@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<h1>Employee Trainings</h1>
+
+<ol>
+{% for training in trainings %}
+    <li>
+        <p>{{ training.title }}</p>
+        Start Date: {{training.start_date}}
+        End Date: {{training.end_date}}
+        Capacity: {{training.capacity}}
+    </li>
+{% endfor %}
+</ol>
+{% endblock content %}
