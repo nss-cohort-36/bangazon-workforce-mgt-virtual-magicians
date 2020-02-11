@@ -1,6 +1,6 @@
 import sqlite3
 from django.shortcuts import render
-from .models import Computer
+from ...models import Computer
 from ..connection import Connection
 
 
@@ -12,9 +12,10 @@ def computer_list(request):
 
             db_cursor.execute("""
             select
+                c.id,
                 c.make,
                 c.purchase_date,
-                c.decomission_date
+                c.decommission_date
             from hrapp_computer c
             """)
 
@@ -24,9 +25,9 @@ def computer_list(request):
             for row in dataset:
                 computer = Computer()
                 computer.id = row['id']
-                computer.make = make['make']
-                computer.purchase_date = purchase_date['purchase_date']
-                computer.decomission_date = decomission_date['decomission_date']
+                computer.make = row['make']
+                computer.purchase_date = row['purchase_date']
+                computer.decommission_date = row['decommission_date']
 
                 all_computers.append(computer)
 
