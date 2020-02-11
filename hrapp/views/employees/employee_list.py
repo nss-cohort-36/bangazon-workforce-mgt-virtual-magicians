@@ -1,14 +1,15 @@
 import sqlite3
+from ..connection import Connection
 from django.shortcuts import render
 from hrapp.models import Employee
 
 
 def employee_list(request):
     if request.method == 'GET':
-        with sqlite3.connect("/Users/josephwalker/workspace/PYTHON/bangazon-workforce-mgt-virtual-magicians/db.sqlite3") as conn:
+        with sqlite3.connect(Connection.db_path) as conn:            
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
-
+            
             # TODO: Add to query: e.department,
             db_cursor.execute("""
             select
