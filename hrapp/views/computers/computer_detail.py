@@ -7,7 +7,7 @@ from ...models import Computer
 
 def get_computer(computer_id):
     with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Computer)
+        conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -20,13 +20,13 @@ def get_computer(computer_id):
             from hrapp_computer c
             """)
 
-            return db_cursor.fetchone()
+        return db_cursor.fetchone()
 
-def computer_details(request, computer_id):
+def computer_detail(request, computer_id):
     if request.method == 'GET':
         computer = get_computer(computer_id)
 
-        template = 'computers/detail.html'
+        template = 'computers/computer_detail.html'
         context = {
             'computer': computer
         }
