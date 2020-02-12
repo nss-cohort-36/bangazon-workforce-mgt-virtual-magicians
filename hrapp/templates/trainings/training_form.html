@@ -9,7 +9,7 @@
     <h1>Add A New Employee Training</h1>
 
 
-    <form action="{% url 'hrapp:training_form' %}" method="post">
+    <form action="{% url 'hrapp:training_list' %}" method="post">
     {% csrf_token %}
         <fieldset>
             <label for="title">Title: </label>

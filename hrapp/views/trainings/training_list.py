@@ -58,7 +58,7 @@ def training_list(request):
             VALUES (?, ?, ?, ?)
             """,
             (form_data['title'], form_data['start_date'],
-                form_data['end_date'], form_data['capacity'],
-                request.user.training.id))
+                form_data['end_date'], form_data['capacity']
+            ))
 
-        return redirect(reverse('hrapp:trainings'))
+        return redirect(reverse('hrapp:training_list'))
