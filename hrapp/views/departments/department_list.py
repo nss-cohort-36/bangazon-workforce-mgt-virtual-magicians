@@ -13,16 +13,16 @@ def department_list(request):
 
             db_cursor.execute("""
             SELECT 
+                COUNT(), 
                 d.id, 
                 d.dept_name, 
                 d.dept_budget, 
                 e.id, 
-                e.department_id, 
-                e.first_name, 
-                e.last_name
+                e.department_id
             FROM hrapp_department d
             INNER JOIN hrapp_employee e
-            ON d.id =e.department_id;
+            ON d.id =e.department_id
+            GROUP BY e.department_id;
             """)
             all_departments = []
             dataset = db_cursor.fetchall()
