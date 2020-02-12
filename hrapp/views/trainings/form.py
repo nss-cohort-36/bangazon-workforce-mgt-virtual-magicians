@@ -27,7 +27,7 @@ def get_trainings():
 def training_form(request):
     if request.method == 'GET':
         trainings = get_trainings()
-        template = 'trainings/form.html'
+        template = 'training/form.html'
         context = {
             'all_trainings': trainings
         }
