@@ -14,6 +14,7 @@ def computer_list(request):
             select
                 c.id,
                 c.make,
+                c.model,
                 c.purchase_date,
                 c.decommission_date
             from hrapp_computer c
@@ -26,6 +27,7 @@ def computer_list(request):
                 computer = Computer()
                 computer.id = row['id']
                 computer.make = row['make']
+                computer.model = row['model']
                 computer.purchase_date = row['purchase_date']
                 computer.decommission_date = row['decommission_date']
 

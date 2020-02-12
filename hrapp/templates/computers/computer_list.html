@@ -6,8 +6,9 @@
     <ol>
     {% for computer in all_computers %}
         <li>
-            {{ computer.make }}
-            {{computer.purchase_date}}
+            Make: {{ computer.make }}<br>
+            Model: {{ computer.model }}<br>
+            Purchased: {{computer.purchase_date}}
         </li>
     {% endfor %}
     </ol>
