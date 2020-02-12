@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +9,7 @@
     <h1>Add Employee</h1>
 
 
-    <form action="{% url 'hrapp:employees' %}" method="post">
+    <form action="{% url 'hrapp:employee_form' %}" method="post">
       {% csrf_token %}
       <fieldset>
           <label for="first_name">First: </label>
@@ -21,7 +21,7 @@
       </fieldset>
       <fieldset>
           <label for="start_date">Start date: </label>
-          <input id="start_date" type="number" name="start_date">
+          <input id="start_date" type="date" name="start_date">
       </fieldset>
       {% comment %} <fieldset>
           <label for="isbn">Supervisor?: </label>
