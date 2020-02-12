@@ -8,7 +8,8 @@
 <ol>
 {% for department in departments %}
     <li>
-        <p>{{ department }}</p>
+        {{ department.dept_name }}
+        {{ department.dept_budget }}
         
     </li>
 {% endfor %}
