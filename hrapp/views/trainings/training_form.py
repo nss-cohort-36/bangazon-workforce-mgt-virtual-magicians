@@ -17,7 +17,8 @@ def get_trainings():
             t.title,
             t.start_date,
             t.end_date,
-            t.capacity
+            t.capacity,
+            t.description
         from hrapp_training t
         """)
 

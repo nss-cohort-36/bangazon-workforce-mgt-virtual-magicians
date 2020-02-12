@@ -19,7 +19,8 @@ def training_list(request):
                 t.title,
                 t.start_date,
                 t.end_date,
-                t.capacity
+                t.capacity,
+                t.description
             from hrapp_training t
             """)
 
@@ -33,6 +34,7 @@ def training_list(request):
                 training.start_date = row['start_date']
                 training.end_date = row['end_date']
                 training.capacity = row['capacity']
+                training.description = row['description']
 
                 all_trainings.append(training)
 
@@ -53,12 +55,12 @@ def training_list(request):
             db_cursor.execute("""
             INSERT INTO hrapp_training
             (
-                title, start_date, end_date, capacity
+                title, start_date, end_date, capacity, description
             )
-            VALUES (?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?)
             """,
             (form_data['title'], form_data['start_date'],
-                form_data['end_date'], form_data['capacity']
+                form_data['end_date'], form_data['capacity'], form_data['description']
             ))
 
         return redirect(reverse('hrapp:training_list'))
