@@ -4,11 +4,17 @@
 
 {% block content %}
 <h1>Departments</h1>
+ <form action="department" method="POST">
+            {% csrf_token %}
+                <button type="submit">Add Department</button>
+</form>
 
 <ol>
 {% for department in departments %}
     <li>
-        <p>{{ department }}</p>
+       <p> Department: {{ department.dept_name }} </p>
+        Budget: {{ department.dept_budget }}
+       <p> Employees Assigned: {{ department.assiged_employee }} </p>
         
     </li>
 {% endfor %}

@@ -2,40 +2,44 @@ import sqlite3
 from django.shortcuts import render
 from hrapp.models import Department
 from ..connection import Connection
-
+from hrapp.models.employee import Employee
+from django.db.models import Count
 
 
 def department_list(request):
     if request.method == 'GET':
-        with sqlite3.connect(Connection.db_path) as conn:            
+        with sqlite3.connect(Connection.db_path) as conn:
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
-
             db_cursor.execute("""
-            select
-                d.id,
-                d.dept_name,
-                d.dept_budget
-            from hrapp_department d
+            SELECT 
+                COUNT(d.id) AS assiged_employee, 
+                d.dept_name, 
+                d.dept_budget, 
+                e.id, 
+                e.department_id
+            FROM hrapp_department d
+            INNER JOIN hrapp_employee e
+            ON d.id =e.department_id
+            GROUP BY e.department_id;
             """)
-
             all_departments = []
             dataset = db_cursor.fetchall()
+
 
             for row in dataset:
                 department = Department()
                 department.id = row['id']
                 department.dept_name = row['dept_name']
                 department.dept_budget = row['dept_budget']
+                department.department_id = row['department_id']
+                department.assiged_employee = row['assiged_employee']
+                all_departments.append(department)
 
-
-
-            all_departments.append(department)
-              
     template = 'department/department_list.html'
     context = {
-        'department' : all_departments
+        'departments': all_departments
     }
 
     return render(request, template, context)
