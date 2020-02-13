@@ -1,0 +1,27 @@
+{%  extends 'shared/base.html' %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bangazon</title>
+  </head>
+
+
+{% block content %}
+<h1>New Department</h1>
+
+
+ <form action="{% 'hrapp:departments.department_form' %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <label for='dept_name'>Deparment Name:</label>
+        <input id='dept_name' type='text' name='dept_name'>
+    </fieldset>
+    <fieldset>
+        <label for='dept_budget'>Department Budget:</label>
+        <input id='dept_budget' type='text'name='dept_budget'>
+    </fieldset>
+    <button type="submit">Add Deparment</button>
+                  
+ </form>
+ {% endblock  %}
