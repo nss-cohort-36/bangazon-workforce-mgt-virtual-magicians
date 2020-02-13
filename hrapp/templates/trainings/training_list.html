@@ -6,7 +6,8 @@
 <ol>
 {% for training in trainings %}
     <li>
-        <h3>{{ training.title }}</h3>
+        <a href="{% url 'hrapp:training' training.id %}"> {{ training.title }} </a>
+        {% comment %} <h3>{{ training.title }}</h3> {% endcomment %}
         <p>Description: {{training.description}}</p>
         Start Date: {{training.start_date}}
         End Date: {{training.end_date}}
