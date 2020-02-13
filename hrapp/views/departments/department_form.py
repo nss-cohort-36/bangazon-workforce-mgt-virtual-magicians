@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def new_department():
-     with sqlite3.connect(Connection.db_path) as conn:
+    with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 

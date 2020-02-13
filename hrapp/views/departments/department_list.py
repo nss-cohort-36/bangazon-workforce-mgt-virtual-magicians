@@ -1,9 +1,10 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from hrapp.models import Department
 from ..connection import Connection
 from hrapp.models.employee import Employee
 from django.db.models import Count
+from django.urls import reverse
 
 
 def department_list(request):
@@ -37,12 +38,12 @@ def department_list(request):
                 department.assiged_employee = row['assiged_employee']
                 all_departments.append(department)
 
-    template = 'department/department_list.html'
-    context = {
-        'departments': all_departments
-    }
+        template = 'department/department_list.html'
+        context = {
+            'departments': all_departments
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)
 
 
 
@@ -57,8 +58,8 @@ def department_list(request):
             (
                 dept_name, dept_budget
             )
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?)
             """,
             (form_data['dept_name'], form_data['dept_budget']))
 
-        return redirect(reverse('hrapp:departments'))
+        return redirect(reverse('hrapp:department_list'))
