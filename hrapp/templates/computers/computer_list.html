@@ -5,11 +5,11 @@
 
     <ol>
     {% for computer in all_computers %}
-        <li>
-            Make: {{ computer.make }}<br>
-            Model: {{ computer.model }}<br>
-            Purchased: {{computer.purchase_date}}
-        </li>
+<li>
+    <a href="{% url 'hrapp:computer' computer.id %}"> 
+    {{ computer.make }} 
+    {{computer.model}} </a>
+</li>
     {% endfor %}
     </ol>
   {% endblock %}
