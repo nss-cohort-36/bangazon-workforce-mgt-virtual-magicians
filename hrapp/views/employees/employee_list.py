@@ -52,6 +52,10 @@ def employee_list(request):
 
     elif request.method == 'POST':
         form_data = request.POST
+        if "is_supervisor" in form_data:
+            is_supervisor = True
+        else:
+            is_supervisor = False
 
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
@@ -65,7 +69,7 @@ def employee_list(request):
             VALUES (?, ?, ?, ?, ?)
             """,
             (form_data['first_name'], form_data['last_name'],
-                form_data['start_date'], form_data['is_supervisor'], 
+                form_data['start_date'], is_supervisor, 
                     form_data['department']))
 
         return redirect(reverse('hrapp:employee_list'))
