@@ -22,11 +22,11 @@ def get_computer(computer_id):
 
         return db_cursor.fetchone()
 
-def computer_detail(request, computer_id):
+def computer_details(request, computer_id):
     if request.method == 'GET':
         computer = get_computer(computer_id)
 
-        template = 'computers/computer_detail.html'
+        template = 'computers/computer_details.html'
         context = {
             'computer': computer
         }
