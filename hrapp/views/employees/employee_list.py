@@ -1,8 +1,9 @@
 import sqlite3
 from ..connection import Connection
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from hrapp.models import Employee
-from hrapp.models.department import Department
+from hrapp.models import Department
 
 
 def employee_list(request):
@@ -31,7 +32,6 @@ def employee_list(request):
 
             for row in dataset:
                 employee = Employee()
-                # department = Department()
                 employee.id = row['id']
                 employee.first_name = row['first_name']
                 employee.last_name = row['last_name']
@@ -43,9 +43,33 @@ def employee_list(request):
 
                 all_employees.append(employee)
 
-    template = 'employees/employee_list.html'
-    context = {
-        'employees': all_employees
-    }
+            template = 'employees/employee_list.html'
+            context = {
+                'employees': all_employees
+            }
 
-    return render(request, template, context)
+            return render(request, template, context)
+
+    elif request.method == 'POST':
+        form_data = request.POST
+        if "is_supervisor" in form_data:
+            is_supervisor = True
+        else:
+            is_supervisor = False
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO hrapp_employee
+            (
+                first_name, last_name, start_date,
+                is_supervisor, department_id
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (form_data['first_name'], form_data['last_name'],
+                form_data['start_date'], is_supervisor, 
+                    form_data['department']))
+
+        return redirect(reverse('hrapp:employee_list'))
