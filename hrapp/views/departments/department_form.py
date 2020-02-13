@@ -30,12 +30,11 @@ def new_department():
 def department_form(request):
     if request.method == 'GET':
         departments = new_department()
-        template = 'departments/department_form.html'
+        template = 'department/department_form.html'
         context = {
             'all_departments': departments
         }
-
-    return render(request, template, context)
+        return render(request, template, context)
 
 
         
