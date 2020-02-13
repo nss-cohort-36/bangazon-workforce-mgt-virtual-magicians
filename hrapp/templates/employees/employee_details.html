@@ -1,0 +1,10 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <h3> Name: {{ employee.first_name }} {{ employee.last_name }}</h3>
+    <h3> Department: {{ employee.dept_name }}</h3>
+
+    <div>start date: {{ employee.start_date }}</div>
+    
+{% endblock %}
