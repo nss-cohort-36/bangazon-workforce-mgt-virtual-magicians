@@ -20,8 +20,7 @@ def employee_list(request):
                 e.start_date,
                 e.is_supervisor,
                 e.department_id,
-                d.dept_name,
-                d.id
+                d.dept_name
             from hrapp_employee e
             JOIN hrapp_department d
             where e.department_id = d.id;
@@ -39,7 +38,7 @@ def employee_list(request):
                 employee.is_supervisor = row['is_supervisor']
                 employee.department_id = row['department_id']
                 employee.dept_name = row['dept_name']
-                employee.id = row['id']
+                # employee.id = row['id']
 
                 all_employees.append(employee)
 
