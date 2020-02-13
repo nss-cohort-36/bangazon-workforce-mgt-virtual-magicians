@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Computers</h1>
-
+   <button onclick="{% url 'hrapp:computer_form' %}">Add Computer</button>
     <ol>
     {% for computer in all_computers %}
 <li>
