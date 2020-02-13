@@ -3,6 +3,7 @@ from django.shortcuts import render
 from hrapp.models import Department
 from ..connection import Connection
 from hrapp.models.employee import Employee
+from django.db.models import Count
 
 
 def department_list(request):
@@ -13,8 +14,7 @@ def department_list(request):
 
             db_cursor.execute("""
             SELECT 
-                COUNT(), 
-                d.id, 
+                COUNT(d.id) AS assiged_employee, 
                 d.dept_name, 
                 d.dept_budget, 
                 e.id, 
@@ -34,6 +34,7 @@ def department_list(request):
                 department.dept_name = row['dept_name']
                 department.dept_budget = row['dept_budget']
                 department.department_id = row['department_id']
+                department.assiged_employee = row['assiged_employee']
                 all_departments.append(department)
 
     template = 'department/department_list.html'
