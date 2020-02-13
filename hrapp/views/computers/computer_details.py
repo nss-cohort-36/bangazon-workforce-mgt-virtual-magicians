@@ -18,7 +18,8 @@ def get_computer(computer_id):
                 c.purchase_date,
                 c.decommission_date
             from hrapp_computer c
-            """)
+            WHERE c.id = ?
+            """, (computer_id, ))
 
         return db_cursor.fetchone()
 
