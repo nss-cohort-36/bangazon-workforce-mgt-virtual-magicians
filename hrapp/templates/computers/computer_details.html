@@ -4,7 +4,12 @@
 
     <h3> Make: {{ computer.make }}</h3>
     <h3> Model: {{ computer.model }}</h3>
-
     <div>Purchased: {{ computer.purchase_date }}</div>
+
+<form action="{% url 'hrapp:computer' computer.id %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="actual_method" value="DELETE">
+    <button>Delete</button>
+</form>
     
 {% endblock %}

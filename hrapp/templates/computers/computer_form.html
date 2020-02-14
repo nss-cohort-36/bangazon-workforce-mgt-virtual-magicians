@@ -4,7 +4,7 @@
     <h1>Add New Computer</h1>
 
 
-    <form action="{% url 'hrapp:computers' %}" method="post">
+    <form action="{% url 'hrapp:computer_list' %}" method="post">
       {% csrf_token %}
       <fieldset>
           <label for="make">Make: </label>
@@ -21,4 +21,4 @@
 
       <input type="submit" value="Add New Computer" />
     </form>
-   {% endblock %}
+{% endblock %}
