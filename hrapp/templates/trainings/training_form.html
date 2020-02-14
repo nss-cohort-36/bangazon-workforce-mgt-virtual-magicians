@@ -9,8 +9,12 @@
     <h1>Add A New Employee Training</h1>
 
 
-    <form action="{% url 'hrapp:training_list' %}" method="post">
-    {% csrf_token %}
+    {% if book.id is not None %}
+        <form action="{% url 'hrapp:training' training.id %}" method="post">
+    {% else %}
+        <form action="{% url 'hrapp:training_list' %}" method="post">
+    {% endif %}
+        {% csrf_token %}
         <fieldset>
             <label for="title">Title: </label>
             <input id="title" type="text" name="title">

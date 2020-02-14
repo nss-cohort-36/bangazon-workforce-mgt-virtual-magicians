@@ -34,3 +34,18 @@ def training_form(request):
         }
 
         return render(request, template, context)
+    
+@login_required
+def training_edit_form(request, training_id):
+
+    if request.method == 'GET':
+        training = get_trainings(training_id)
+        trainings = get_trainings()
+
+        template = 'trainings/training_form.html'
+        context = {
+            'training': training,
+            'all_trainings': trainings
+        }
+
+        return render(request, template, context)
