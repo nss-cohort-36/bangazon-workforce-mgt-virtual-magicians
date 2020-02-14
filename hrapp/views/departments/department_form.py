@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def new_department():
-     with sqlite3.connect(Connection.db_path) as conn:
+    with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
@@ -30,12 +30,11 @@ def new_department():
 def department_form(request):
     if request.method == 'GET':
         departments = new_department()
-        template = 'departments/department_form.html'
+        template = 'department/department_form.html'
         context = {
             'all_departments': departments
         }
-
-    return render(request, template, context)
+        return render(request, template, context)
 
 
         
