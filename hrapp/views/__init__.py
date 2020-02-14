@@ -12,3 +12,4 @@ from .computers.computer_form import computer_form
 from .computers.computer_details import computer_details
 from .employees.employee_details import employee_details
 from .employees.employee_form import employee_edit_form
+from .trainings.training_form import training_form, training_edit_form
