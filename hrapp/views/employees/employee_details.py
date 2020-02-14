@@ -22,9 +22,8 @@ def get_employee(employee_id):
                 d.id
             from hrapp_employee e
             JOIN hrapp_department d
-            ON e.department_id = d.id
-            WHERE id = ?
-            """, (employee_id,))
+            ON e.department_id = d.id;
+            """,)
 
         return db_cursor.fetchone()
 
