@@ -6,5 +6,18 @@
     <h3> Department: {{ employee.dept_name }}</h3>
 
     <div>start date: {{ employee.start_date }}</div>
+
+    <section>
+        <form action="{% url 'hrapp:employee' employee.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+        <button>Fire!</button>
+        </form>
+
+        <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+        </form>
+    </section>
     
 {% endblock %}

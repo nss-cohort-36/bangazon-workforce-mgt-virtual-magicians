@@ -6,6 +6,7 @@ from hrapp.models import Employee
 from hrapp.models import Department
 # from hrapp.models import model_factory
 from ..connection import Connection
+from .employee_details import get_employee
 
 
 def get_departments():
@@ -27,6 +28,20 @@ def employee_form(request):
         department = get_departments()
         template = 'employees/employee_form.html'
         context = {
+            'all_departments': department
+        }
+
+        return render(request, template, context)
+
+def employee_edit_form(request, employee_id):
+
+    if request.method == 'GET':
+        employee = get_employee(employee_id)
+        department = get_departments()
+
+        template = 'employees/employee_form.html'
+        context = {
+            'employee': employee,
             'all_departments': department
         }
 
