@@ -3,6 +3,8 @@
 {% block content %}
 <h1>Employee Trainings</h1>
 
+    <a href="{% url 'hrapp:training_form' %}">Add New Training</a>
+
 <ol>
 {% for training in trainings %}
     <li>
