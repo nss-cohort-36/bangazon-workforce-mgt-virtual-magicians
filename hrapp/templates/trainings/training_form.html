@@ -36,7 +36,12 @@
             <input id="capacity" type="number" name="capacity">
         </fieldset>
 
-    <input type="submit" value="Add Training" />
+    {% if training.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
     </form>
 </body>
 </html>

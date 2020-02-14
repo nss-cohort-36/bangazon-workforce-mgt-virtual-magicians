@@ -2,7 +2,7 @@ import sqlite3
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from hrapp.models import Training
-# from libraryapp.models import model_factory
+from .training_details import get_training
 from ..connection import Connection
 
 
@@ -39,7 +39,7 @@ def training_form(request):
 def training_edit_form(request, training_id):
 
     if request.method == 'GET':
-        training = get_trainings(training_id)
+        training = get_training(training_id)
         trainings = get_trainings()
 
         template = 'trainings/training_form.html'
